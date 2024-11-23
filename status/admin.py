@@ -3,6 +3,6 @@ from status.models import Status
 
 # Register your models here.
 class StatusAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('text','created_at','user')     # show this 
 
 admin.site.register(Status, StatusAdmin)
