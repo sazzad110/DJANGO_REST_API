@@ -8,7 +8,8 @@ from .serializers import StatusSerializer
 # Create your views here.
 
 class StatusViewer(APIView):
-    def get(self,request):
-        all_status = Status.objects.all()
-        serializer = StatusSerializer(all_status,many=True)
+    def get(self,request,**kwargs):
+        id = kwargs.get('id')
+        status = Status.objects.get(pk=id)
+        serializer = StatusSerializer(status,many=False)
         return Response(serializer.data)
