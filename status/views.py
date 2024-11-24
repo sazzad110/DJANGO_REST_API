@@ -1,6 +1,14 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+from .models import Status
+from .serializers import StatusSerializer
 
 # Create your views here.
 
-def index(request):
-    return HttpResponse("hello world")
+class StatusViewer(APIView):
+    def get(self,request):
+        all_status = Status.objects.all()
+        serializer = StatusSerializer(all_status,many=True)
+        return Response(serializer.data)

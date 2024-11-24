@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import index
+from .views import StatusViewer
 
 urlpatterns = [
 
-    path("all/",index ,name="index"),      # localhost/status/all to access
+    path("all/",StatusViewer.as_view() ,name="status_view"),      # localhost/status/all to access
 ]
